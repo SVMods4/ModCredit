@@ -1,0 +1,18 @@
+{
+  "id": "credits.picker",
+  "name": "Кредиты в выборе модели",
+  "description": "Показывает оставшиеся кредиты рядом с моделями в меню выбора модели.",
+  "author": "regerns",
+  "version": "1.0",
+  "api": 1,
+  "entry": "com.regerns.credits.CreditsMod",
+  "settings": [
+    {"key": "enabled", "type": "toggle", "title": "Показывать кредиты", "default": true},
+    {"key": "format", "type": "text", "title": "Формат подписи", "hint": " · {n} кр.", "default": " · {n} кр."},
+    {"key": "models", "type": "text", "title": "Названия моделей через запятую", "hint": "Opus,Sonnet,Haiku,Fable", "default": "Opus,Sonnet,Haiku,Fable,Mythos"},
+    {"key": "url", "type": "text", "title": "URL эндпоинта с остатком", "hint": "https://claude.ai/api/...", "default": ""},
+    {"key": "jsonKey", "type": "text", "title": "Ключ в JSON с остатком", "hint": "remaining", "default": "remaining"},
+    {"key": "refresh", "type": "number", "title": "Обновлять раз в N минут", "default": 5},
+    {"key": "manual", "type": "text", "title": "Значение вручную (если URL пуст)", "default": ""}
+  ]
+}
