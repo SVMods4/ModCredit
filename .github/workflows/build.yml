@@ -1,0 +1,29 @@
+name: build-mod
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: narezy/MargyC
+          path: margyc
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Android SDK parts
+        run: |
+          SDKM=$(find "$ANDROID_HOME/cmdline-tools" -name sdkmanager | head -1)
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "platforms;android-35" "build-tools;35.0.0"
+      - run: cd margyc && python3 tools/build_mod.py ../mod
+      - run: mkdir out && find . -name "*.mcmod" -exec cp {} out/ \;
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcmod
+          path: out/*.mcmod
